@@ -22,3 +22,5 @@ Aclaraciones:
         Los resultados se imprimen en consola pero también se escriben dentro de la carpeta Output con el nombre de la fecha y hora de finalización del la corrida.
         Los nombres se pasan a mayúsucla en el código (porque asi era el ejemplo en el email, si no era la idea solo hay que eliminar .upper() en la clase lectora).
         
+Bugs:
+    JSON files doesn't like non-ASCII characters, so the output file will skip them when writing in this particular format
