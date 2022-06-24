@@ -27,12 +27,17 @@ def calculation(payments: ContainerPayment, employees: ContainerEmployees) -> li
                     start = schedule[0];
                     finish = schedule[1];
 
-                    if start < finish:
-                        for hour in list(range(start, finish)):
-                            pay += payments.container[day][hour]
-                    else:
-                        for hour in (list(range(start, 24)) + list(range(0, finish))):
-                            pay += payments.container[day][hour]
+                    try:
+                        if start < finish:
+                            for hour in list(range(start, finish)):
+                                pay += payments.container[day][hour]
+                        else:
+                            for hour in (list(range(start, 24)) + list(range(0, finish))):
+                                pay += payments.container[day][hour]
+                    except(KeyError) as ex:
+                        print(f"KeyError on calculation.py")
+                        print(f"Error while accesing the data of {employ[0]}. This probably happened due to the employee working in an hour in which the company doesn't have a payment defined")
+                        print(ex)
             
         results.append(f"{index}-{employ[0]}: {pay} USD")
     
