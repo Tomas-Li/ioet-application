@@ -34,10 +34,12 @@ def calculation(payments: ContainerPayment, employees: ContainerEmployees) -> li
                         else:
                             for hour in (list(range(start, 24)) + list(range(0, finish))):
                                 pay += payments.container[day][hour]
-                    except(KeyError) as ex:
+                    except(KeyError):
                         print(f"KeyError on calculation.py")
-                        print(f"Error while accesing the data of {employ[0]}. This probably happened due to the employee working in an hour in which the company doesn't have a payment defined")
-                        print(ex)
+                        print(f"Error while accesing the data of {employ[0]}. This may have happened due to the employee working in an hour in which the company doesn't have a payment defined")
+                        print(f"The invalid hour was at {hour} on {day}")
+                        print(f"{employ[0]}'s data will stop being processed. The calculated amount until this point will be provided at the end")
+                        print()
             
         results.append(f"{index}-{employ[0]}: {pay} USD")
     

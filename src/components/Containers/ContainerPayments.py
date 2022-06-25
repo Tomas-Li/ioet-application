@@ -83,9 +83,12 @@ class ContainerPayment(ContainerInterface):
             A string for the path with the file to read (extension .json included)
         
         """
-
-        with open(path, mode='r', encoding='utf-8') as f:
-            intervals = json.load(f, parse_int=int)
+        try:
+            with open(path, mode='r', encoding='utf-8') as f:
+                intervals = json.load(f, parse_int=int)
+        except(FileNotFoundError):
+            print("A payment.json data file couldn't be found at the input path, please check your configFile->PATHPAYMENTS variable")
+            exit()
         
         for day in WEEKDAYS:
             for interval in intervals[day]:

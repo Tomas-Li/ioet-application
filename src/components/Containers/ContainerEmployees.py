@@ -82,6 +82,7 @@ class ContainerEmployees(ContainerInterface):
             self.loadFromConsole();
         else:
             raise Exception("In ContainerEmployees: fileType wasn't recognize")
+            exit()
 
 
     def loadFromTextFile(self, path: str) -> None:
@@ -98,23 +99,28 @@ class ContainerEmployees(ContainerInterface):
         
         """
 
-        with open(path, mode='r', encoding='utf-8') as f:
-            for line in f:
-                workingHours = {}
-                name = line.split('=')[0].strip().upper()
-                schedule = line.split('=')[1].replace(' ', '').split(',') #Need to get ride of all posibles spaces in between times
-                for daySchedule in schedule:
-                    #schedule's two first characters are the day's identifier follow by the interval separated by a -
-                    day = daySchedule[:2].upper()
-                    workingInterval = daySchedule[2:].split('-')
-                    start = int(workingInterval[0].split(':')[0])
-                    finish = int(workingInterval[1].split(':')[0])
-                    if day in workingHours.keys():
-                        workingHours[day].append([start,finish])
-                    else:    
-                        workingHours[day] = [[start,finish]]
+        try:
+            with open(path, mode='r', encoding='utf-8') as f:
+                for line in f:
+                    workingHours = {}
+                    name = line.split('=')[0].strip().upper()
+                    schedule = line.split('=')[1].replace(' ', '').split(',') #Need to get ride of all posibles spaces in between times
+                    for daySchedule in schedule:
+                        #schedule's two first characters are the day's identifier follow by the interval separated by a -
+                        day = daySchedule[:2].upper()
+                        workingInterval = daySchedule[2:].split('-')
+                        start = int(workingInterval[0].split(':')[0])
+                        finish = int(workingInterval[1].split(':')[0])
+                        if day in workingHours.keys():
+                            workingHours[day].append([start,finish])
+                        else:    
+                            workingHours[day] = [[start,finish]]
 
-                self._container.append([name, workingHours])
+                    self._container.append([name, workingHours])
+
+        except(FileNotFoundError):
+            print("An employees.txt data file couldn't be found at the input path, please check your configFile->PATHEMPLOYEES variable")
+            exit()
 
 
     def loadFromJson(self, path: str) -> None:
@@ -129,21 +135,26 @@ class ContainerEmployees(ContainerInterface):
         
         """
 
-        with open(path, mode='r', encoding='utf-8') as f:
-            jsonfile = json.load(f)
-            
-            for name in jsonfile.keys():
-                employeeEschedule = {}
-                for k,v in jsonfile[name].items():
-                    day = k.strip().upper()
-                    intervals = []
-                    for interval in v:
-                        interval = interval.split('-')
-                        start = int(interval[0].split(':')[0])
-                        finish = int(interval[1].split(':')[0])
-                        intervals.append([start,finish])
-                    employeeEschedule[day] = intervals
-                self._container.append([name.strip().upper(), employeeEschedule])
+        try:
+            with open(path, mode='r', encoding='utf-8') as f:
+                jsonfile = json.load(f)
+                
+                for name in jsonfile.keys():
+                    employeeEschedule = {}
+                    for k,v in jsonfile[name].items():
+                        day = k.strip().upper()
+                        intervals = []
+                        for interval in v:
+                            interval = interval.split('-')
+                            start = int(interval[0].split(':')[0])
+                            finish = int(interval[1].split(':')[0])
+                            intervals.append([start,finish])
+                        employeeEschedule[day] = intervals
+                    self._container.append([name.strip().upper(), employeeEschedule])
+        
+        except(FileNotFoundError):
+            print("An employees.json data file couldn't be found at the input path, please check your configFile->PATHEMPLOYEES variable")
+            exit()
 
 
     def loadFromConsole(self) -> None:
