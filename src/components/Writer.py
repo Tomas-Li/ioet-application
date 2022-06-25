@@ -6,7 +6,11 @@ This file defines the class Writer which is in charge of the output of the resul
 
 Methods:
 -------
-
+    write(self, results: list)
+    writeTxt(self, results: list)
+    writeJson(self, results: list)
+    jsonFormat(self, results: list)
+    fileOutputName(self)
 
 """
 
@@ -37,7 +41,7 @@ class Writer():
         self._path = f"{path}/{dt_string}.{self._format}"
 
 
-    def write(self, results: list) -> None:
+    def write(self, results: list) -> None :
         """
         Method that redirects to the correct writing function based on the specified format.
         The name of the output file will be the DateTime in which the file is being writen
@@ -49,18 +53,18 @@ class Writer():
         """
 
         if (self._format == 'txt'):
-            self.writeTXT(results)
+            self.writeTxt(results)
         elif (self._format == 'json'):
-            self.writeJSON(results)
+            self.writeJson(results)
         elif (self._format == 'console'):
             self.writeConsole(results)
         else:
             print("The output format wasn't a valid option.")
             print("Proceding to generate a .txt file in the output directory")
-            self.writeTXT(results)
+            self.writeTxt(results)
 
     
-    def writeTXT(self, results: list) -> None:
+    def writeTxt(self, results: list) -> None:
         """
         Method for writing a txt file with the results
 
@@ -75,7 +79,7 @@ class Writer():
                 f.write(f"{result}\n")
 
 
-    def writeJSON(self, results: list) -> None:
+    def writeJson(self, results: list) -> None:
         """
         Method for writing a json file with the results
 
@@ -90,9 +94,10 @@ class Writer():
             json.dump(jsonFormatedResults, f, ensure_ascii=False, sort_keys=True, indent=4)
 
 
-    def writeConsole(self, results: list) -> None:
+    def writeConsole(self, results: list) -> list:
         """
-        Method for printing on console the results
+        Method for printing on console the results.
+        Returns the results as a way of testing all the prosses until this point
 
         Parameters
         ----------
@@ -102,6 +107,8 @@ class Writer():
 
         for result in results:
             print(result)
+
+        return results
 
 
     def jsonFormat(self, results: list) -> dict:
@@ -117,7 +124,7 @@ class Writer():
         return jsonFormatedResults
 
 
-    def fileOutput(self) -> str:
+    def fileOutputName(self) -> str:
         """This is a method for testing purposes. It returns the name of the file that is going to be written"""
 
         return self._path

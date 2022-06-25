@@ -12,6 +12,10 @@ Add a currency system (needs an API to be accurate):
 		-use the locale built-in module to work with currencies formats
 		-use an API to get accurate conversion data from one currency to another
 
+No static tests:
+	Using dummy data files and predefined variables to check for behaviours works to ensure that everything works, but is not ideal.
+	Instead of using dummies predefined for reading and checking the data, a more intresting approach would be to define random values for the testings.
+	For example using random and a list of names and numbers we could make a variable that represents the employees data, print it in a file, read it and check if the end results will be the correct
 
 Extra:
     The built-in module datetime was considered as a way to work with containers keeping the data in intervals and not per hour. Using this module is useful in cases where the interval goes over 24h (for example from 22:00 – 2:00) as the classes in this module will know how to work around this.

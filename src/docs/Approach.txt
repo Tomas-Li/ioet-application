@@ -50,6 +50,7 @@ Testing (initial proposal):
 
     Failure test:
         Check what happens when an employee work in a time frame not defined by the company (for example the company doesn't open on weekends)
+        Check what happens when an invalid format (output and input) is introduced
 
 
 

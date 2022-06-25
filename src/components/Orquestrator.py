@@ -49,12 +49,18 @@ class Orquestrator():
         Main method of the class. Is the one that makes the calls to load the containers, calculate the payments, and output the data
     """
 
-    def __init__(self) -> None:
+    def __init__(self, configPath='./configFile.ini') -> None:
         """
         Will call configFileReading to read the configuration file, and will isntantiate both container classes
+
+        Parameters:
+        ----------
+        configPath : string ; defaultValue
+            This is the path to the configurationFile to use. It's given as a parameter in case of having more than one config file, and for testing purposes
         """
 
         #ConfigFile
+        self.configPath = configPath
         self.configFileReading();
 
         #Instantiation
@@ -76,7 +82,7 @@ class Orquestrator():
         """
 
         config = configparser.ConfigParser()
-        config.read('./configFile.ini')
+        config.read(self.configPath)
 
         self._configVariables = {}
 
@@ -86,7 +92,7 @@ class Orquestrator():
         self._configVariables["OUTPUT_TYPE"] = config["OUTPUT"]["OUTPUT_TYPE"].replace("'", '')
 
 
-    def execute(self) -> None:
+    def execute(self) -> str:
         """
         Main method of the class. Is the one that makes the calls to load the containers, calculate the payments, and output the data
         """
@@ -101,3 +107,5 @@ class Orquestrator():
         #Output
         writer = Writer(self._configVariables["OUTPUT_TYPE"], self._configVariables["PATHOUTPUT"])
         writer.write(results)
+
+        return writer.fileOutputName()

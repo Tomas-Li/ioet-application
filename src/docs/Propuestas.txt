@@ -1,7 +1,7 @@
 Archivo que explica las diferentes propuestas consideradas para cada clase nombrada en Approach.txt y la razon de porque se eligio una sobre la otra
 
 Container Payments (diferentes opciones al almacenamiento de data, they don't consider currency):
-    *Cada día con 24hs explicitas: {MO:{0:[25, 1:25, ..., 23:20}, TU:{...}, ...}
+    *Cada día con 24hs explicitas: {MO:{0:25, 1:25, ..., 23:20}, TU:{...}, ...}
         Pros:
             -Todo se trabaja como diccionario -> Extremadamente rápido O(1)
             -7d*24h -> Voy a tener un máximo de 343(7d+168hs+168costos) entradas en memoria (extremadamente barato a nivel memoria. Para el caso no tiene sentido considerar otras maneras de almacenar en memoria para ahorrar espacio)
