@@ -76,3 +76,10 @@
 - JSON files doesn't like non-ASCII characters, so the output file will skip them when writing in this particular format
 - JSON files don't like repeated key values, be careful to not have more than one employee with the same name when doing an input with this particular format. If there are cases like this, change to work with the .txt format or add a unique identifier to each employee
 - This application has been thought to be used only on windows (or more like with files with explicit extension).
+
+---
+
+## Extra: DataGenerator
+- The DataGenerator folder, folder which contains its own code, has been created as a way of having more samples for random testing. Inside there are two python files that will create random data samples to run with the main code.
+- To run these files just execute them like normal python files. The output will go into ./DataGenerator/DataSamples
+- As these files are just generators, they don't have configuration files neither special design patterns. Important variables that we may want to modify are marked with comments starting with #!
