@@ -2,7 +2,7 @@
 
 ---
 
-## Container Payments (diferentes opciones al almacenamiento de data, they don't consider currency):
+## Container Payments (diferentes opciones al almacenamiento de data):
 - Cada día con 24hs explicitas: {MO:{0:25, 1:25, ..., 23:20}, TU:{...}, ...}
     - Pros:
         - Todo se trabaja como diccionario -> Extremadamente rápido O(1)
@@ -84,7 +84,7 @@
 ---
 
 **Formatos de lectura esperados**:
-  - LecturaPaymentes(json): \<Dia>=[[\<start> - \<finish>, \<cost>, \<currency>], ...] -> Currency is optional as the current implementation assumes USD
+  - LecturaPaymentes(json): \<Dia>=[[\<start> - \<finish>, \<cost>, ...]
   - LecturaEmployees(json y txt): \<Empleado>=\<day>\<start>-\<finish>, ...
 
 ---

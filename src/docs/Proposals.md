@@ -22,7 +22,7 @@
                 - Personally I see this as a little more “obscure code” while accessing the data instead of the other approach that seems easier for a first time reader
 
 
-- Every day with list of intervals, cost and currency as [start, finish, cost]. Example: { MO:[[0,9,25], [9,18,15], [18,0,20]], TU:[[...], ...], ... }
+- Every day with list of intervals and payment as [start, finish, cost]. Example: { MO:[[0,9,25], [9,18,15], [18,0,20]], TU:[[...], ...], ... }
     - Pros:
         - As this approach works with intervals, avoids storing unnecessary data (This would be the perfect approach for a big case where saving memory was important)  
             - For this particular case:
@@ -72,8 +72,8 @@ Of course, with all that said, **I chose the first approach**
 ---
 
 ## Reading format structure (proposal):
-  - Payments(json): “\<Day>”: [[\<start>, \<finish>, \<cost>, “\<currency>”], …]
-      Example: {"MO": [[0,9,25,"USD"], [9,28,15,"USD"], [18,0,20,"USD"]]}
+  - Payments(json): “\<Day>”: [[\<start>, \<finish>, \<cost>], …]
+      Example: {"MO": [[0,9,25], [9,28,15], [18,0,20]]}
 
   - Employees:
       json: “\<Name>”: { “\<Day>”: [“\<start – finish>”, …], ...]

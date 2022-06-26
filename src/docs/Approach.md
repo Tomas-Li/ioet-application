@@ -8,14 +8,14 @@
  - It’s constructor should choose which type of input to read (console or file, if file which format) 
  - This class should be in charge of formatting the data for saving it into containers
 
-2)ContainerInterface -> An interface for the container classes
+2) ContainerInterface -> An interface for the container classes
     1) Class containerPayments -> class in charge of keeping the payment data of the company
-    2)Class containerEmployees -> it keeps the information about the name and the worked hours of every employee
+    2) Class containerEmployees -> it keeps the information about the name and the worked hours of every employee
     Both of these classes should works as parameters of the next class/function
 
-3)Calculation -> Class/Function that uses both class containers to calculate the total payment
+3) Calculation -> Class/Function that uses both class containers to calculate the total payment
 
-4)Writer -> Class/Function in charge of writing the output
+4) Writer -> Class/Function in charge of writing the output
 
 
 Final Architecture:

@@ -9,15 +9,17 @@
 	- Add csv compatibility
 
 - Add a currency system (needs an API to be accurate):
-	- Partially implemented as this data is kept inside our containerPayments, but then no conversion is done. To implement it the step would be:
-		- config file should ask for the final currency to convert to
-		- use the locale built-in module to work with currencies formats
-		- use an API to get accurate conversion data from one currency to another
+  - To implement it the step would be:
+    - config file should have an input for the payment currency
+    - each employ should specify the currency in which they want to get paid
+    - from calculation call currencyConversor, a function which using everyemploy's desired currency + input currency converts the result into the correct one
+    - use an API to get accurate conversion data from one currency to another
+    - use the locale built-in module to work with currencies formats for printing the results
 
-- No static tests:
+- No static tests (dataGenerator has been writen, but there aren't tests using them):
 	- Using dummy data files and predefined variables to check for behaviours works to ensure that everything works, but a more ideal testing case would be done with random values for the data input.
-		- Instead of using dummies predefined for reading and checking the data, a more intresting approach would be to define random values for the testings.
-		- An example would be using random and a list of names and numbers we could make a variable that represents the employees data, print it in a file, read it and check if the readed results are correct. Something similar can be done for testing writing.
+		- Instead of using dummies predefined for reading and checking the data, a more interesting approach would be to define random values for the testings.
+		- An example would be using random and a list of names and numbers we could make a variable that represents the employees data, print it in a file, read it and check if the read results are correct. Something similar can be done for testing writing.
 		- This can't be used for mathematical testing as the result should be known before hand (so this approach can't be use with calculation() and either with integration tests that uses this function)
 
 

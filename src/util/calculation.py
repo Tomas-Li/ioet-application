@@ -42,7 +42,8 @@ def calculation(payments: ContainerPayment, employees: ContainerEmployees) -> li
                         print(f"The invalid hour was at {hour} on {day}")
                         print(f"{employ[0]}'s data will stop being processed. The calculated amount until this point will be provided at the end")
                         print()
-            
+        
+        #If the currencyConversor function was implemented, it should go here
         results.append(f"{index}-{employ[0]}: {pay} USD")
     
     return results

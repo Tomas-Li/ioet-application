@@ -43,7 +43,7 @@ class Orquestrator():
         Method for loading all the configuration variables from configFile.ini
 
     containerLoader(container: ContainerInterface, path: str):
-        Method that calls the load method from implementantions of the interface ContainerInterface
+        Method that calls the load method from implementations of the interface ContainerInterface
 
     execute(self):
         Main method of the class. Is the one that makes the calls to load the containers, calculate the payments, and output the data
@@ -86,9 +86,16 @@ class Orquestrator():
 
         self._configVariables = {}
 
+        #PATHS
         self._configVariables["PATHPAYMENTS"] = config["PATHS"]["PATHPAYMENTS"].replace("'", '')
         self._configVariables["PATHEMPLOYEES"] = config["PATHS"]["PATHEMPLOYEES"].replace("'", '')
         self._configVariables["PATHOUTPUT"] = config["PATHS"]["PATHOUTPUT"].replace("'", '')
+
+        #INPUT
+        # not used as there is no currency conversion
+        # self._configVariables["INPUT_CURRENCY_PAYMENTS"] = config["INPUT"]["INPUT_CURRENCY_PAYMENTS"].replace("'", '').upper()
+
+        #OUTPUT
         self._configVariables["OUTPUT_TYPE"] = config["OUTPUT"]["OUTPUT_TYPE"].replace("'", '')
 
 
