@@ -1,12 +1,16 @@
+"""
+Testing code for the program. There is a unit-testing section and an integration-testing section separating both kind of tests.
+"""
+#Built-in imports
 import os
 import unittest
 
+#Local imports
+from src.util.calculation import calculation
 from src.components.Containers.ContainerEmployees import ContainerEmployees
 from src.components.Containers.ContainerPayments import ContainerPayment
-from src.util.calculation import calculation
-from src.components.Writer import Writer
-
 from src.components.Orquestrator import Orquestrator
+from src.components.Writer import Writer
 
 
 
@@ -22,11 +26,19 @@ class TestContainerEmployees(unittest.TestCase):
         ]
 
     def test_loadJson(self):
+        """
+        Testing for load data from a json file for the employees container
+        """
+        
         self.containerEmployees.load('./testSamples/dummyEmployees.json')
 
         self.assertEqual(self.containerEmployees.container, self.employee)
 
     def test_loadTxt(self):
+        """
+        Testing for load data from a txt file for the employees container
+        """
+
         self.containerEmployees.load('./testSamples/dummyEmployees.txt')
         
         self.assertEqual(self.containerEmployees.container, self.employee)
@@ -53,6 +65,9 @@ class TestContainer(unittest.TestCase):
         }
 
     def test_loadJson(self):
+        """
+        Testing for load data from a json file for the payment container
+        """
         self.containerPayments.load('./testSamples/dummyPayments.json')
 
         self.assertEqual(self.containerPayments.container, self.payments)
@@ -63,12 +78,20 @@ class TestWriter(unittest.TestCase):
         self.result = ['0-RENE: 60 USD', '1-ASTRID: 25 USD', '2-RAÚL PEREZ: 135 USD']
 
     def test_writerFormat(self):
+        """
+        Testing for format parsing of data inside writer
+        """
+        
         writer = Writer('json', './output')
         formatedData = {'0-RENE': ["60", "USD"], '1-ASTRID': ["25", "USD"], '2-RAÚL PEREZ': ["135", "USD"]}
 
         self.assertEqual(writer.jsonFormat(self.result), formatedData)
     
     def test_writerJson(self):
+        """
+        Testing for output writing in a json file
+        """
+        
         writer = Writer('json', './testSamples')
         writer.write(self.result)
         filePath = writer.fileOutputName()
@@ -83,6 +106,10 @@ class TestWriter(unittest.TestCase):
         os.remove(filePath)
     
     def test_writerTxt(self):
+        """
+        Testing for output writing in a txt file
+        """
+        
         writer = Writer('txt', './testSamples')
         writer.write(self.result)
         filePath = writer.fileOutputName()
@@ -103,10 +130,14 @@ class TestWriter(unittest.TestCase):
 
 
 
-#Integration-testings (class cases per module)
+#Integration-testings:
 
 class TestCalculation(unittest.TestCase):
     def test_calculation(self):
+        """
+        Calculation testing
+        """
+        
         self.containerPayments = ContainerPayment()
         self.containerPayments.load('./testSamples/dummyPayments.json')
         self.containerEmployees = ContainerEmployees()
@@ -122,6 +153,10 @@ class TestOrquestrator(unittest.TestCase):
         pass
 
     def test_orquestratorJson(self):
+        """
+        Entire program execution with json files
+        """
+        
         filePath = Orquestrator('./testSamples/configFileTestingJson.ini').execute()
         with open('./testSamples/resultJson.json', mode='r', encoding='utf-8') as f:
             jsonData = f.read()
@@ -134,6 +169,10 @@ class TestOrquestrator(unittest.TestCase):
     
 
     def test_orquestratorTxt(self):
+        """
+        Entire program execution with txt files
+        """
+        
         filePath = Orquestrator('./testSamples/configFileTestingTxt.ini').execute()
         with open('./testSamples/resultTxt.txt', mode='r', encoding='utf-8') as f:
             txtData = f.read()

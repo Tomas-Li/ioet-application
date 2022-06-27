@@ -79,6 +79,12 @@
 
 ---
 
+## Testing:
+- For executing the tests, run in root level directory: *python -m unittest test.py*
+- All tests are in the same file, and they are divided into 2 sections: Unit-tests & Integration-tests
+
+---
+
 ## Extra: DataGenerator
 - The DataGenerator folder, folder which contains its own code, has been created as a way of having more samples for random testing. Inside there are two python files that will create random data samples to run with the main code.
 - To run these files just execute them like normal python files. The output will go into ./DataGenerator/DataSamples

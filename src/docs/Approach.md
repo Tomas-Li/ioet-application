@@ -17,8 +17,10 @@
 
 4) Writer -> Class/Function in charge of writing the output
 
+---
 
-Final Architecture:
+## Final Architecture:
+
 0) Orchestrator just as described above.
 
 1) ContainerInterface and its both implementations went as planned, but ended up writing the proposed Reader class as methods for both classes.
@@ -27,9 +29,9 @@ Final Architecture:
 
 3) Writer ended up as a class which supports multi format writing.
 
+---
 
-
-Testing (initial proposal):
+## Testing (initial proposal):
 - Orquestador:
     - Test config file lecture and data storing
     - For a final integration testing
